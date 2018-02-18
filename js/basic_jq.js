@@ -4,13 +4,11 @@ $(document).ready(function(){
     var repoUrl = "https://api.github.com/repos/SciLifeLab/NGI-RNAseq/tags"
 
     $("#request_button").click(function(){
-        $("#api_content").load(repoUrl, function(responseTxt, statusTxt, xhr){
-            if(statusTxt == "success")
-                $(this).text("Work it!")
-            if(statusTxt == "error")
-                $(this).text("Request failed: " + xhr.status + ":" + xhr.statusText)
+        $.getJSON( "https://api.github.com/repos/SciLifeLab/NGI-RNAseq/tags", function( data ) {
+            // do something with the parsed JSON, now in `data`
+            data.forEach(element => {
+                console.log(element.name)
+            });
         })
     })
-
-
 })
